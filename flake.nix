@@ -39,9 +39,7 @@
 
     # machine名とnixファイルパスのペアだけを定義
     userMachines = {
-      m75q = ./home/m75q.nix;
-      vm = ./home/vm.nix;
-      thinkpad = ./home/thinkpad.nix;
+      nixos = ./home/nixos.nix;
     };
 
   in {
