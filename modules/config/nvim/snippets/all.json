@@ -1,0 +1,14 @@
+require('luasnip.loaders.from_vscode').lazy_load {
+  path = {
+    './snippets',
+  },
+}
+
+{
+  "example": {
+    "prefix": "test",
+    "body": ["hello snippets!!"],
+    "description": "example snippets"
+  }
+}
+
