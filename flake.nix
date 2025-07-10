@@ -52,7 +52,10 @@
         in {
           name = fullName;
           value = home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.${system};
+            pkgs = import nixpkgs {
+              system = system;
+              config.allowUnfree = true;
+            };
             extraSpecialArgs = { inherit inputs; };
             modules = [
               path

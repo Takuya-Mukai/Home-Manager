@@ -1,4 +1,6 @@
 {
+  programs.home-manager.enable = true;
+  systemd.user.startServices = true;
   imports = [
     ../modules/cli.nix
     ../modules/gui.nix
@@ -9,5 +11,6 @@
     ../modules/wayland/hypr/default.nix
     ../modules/wayland/hypr/monitor/hyprland-monitor-m75q.nix
     ../modules/rustdesk.nix
+    ../modules/systemd/nixos-home-manager.nix
   ];
 }
