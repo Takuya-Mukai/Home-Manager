@@ -1,7 +1,16 @@
-{ config, pkgs, inputs, ... }:
+{ inputs, pkgs, ... }:
 let
-  nixvim-config = import ./nixvim-config.nix;
+  nixvimConfig = import ./nixvim-config.nix;
+  pluginsDir = ./plugins;
+  pluginModules = import pluginsDir;
+  # keybinds = import ./keybinds.nix;
 in
 {
-  inputs.programs.nixvim = nixvim-config.settings;
+  imports = 
+    builtins.attrValues pluginModules
+    ++ [ 
+      # keybinds
+    ];
+
+  programs.nixvim = nixvimConfig.settings;
 }

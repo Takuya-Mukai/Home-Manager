@@ -1,14 +1,13 @@
-{ pkgs }:
 let
-  # nixvim-plugins = import ./nixvim-plugins.nix;
   # nixvim-keymaps = import ./nixvim-keymaps.nix;
-  colorscheme = import ./tokyonight.nix;
+  colorscheme = import ./monokai-pro.nix;
 in
 {
   settings = {
     enable = true;
     vimAlias = true;
-    colorschemes.tokyonight = colorscheme.settings;
+    colorschemes = colorscheme;
+    # keymaps = nixvim-keymaps;
     opts = {
       termguicolors     = true;
       number            = true;
@@ -81,8 +80,6 @@ in
         end,
       })
     '';
-    # plugins = nixvim-plugins;
-    # keymaps = nixvim-keymaps;
   };
 }
 

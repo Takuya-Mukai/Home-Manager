@@ -56,6 +56,7 @@
             };
             extraSpecialArgs = { inherit inputs; };
             modules = [
+	      inputs.nixvim.homeManagerModules.nixvim
               path
               {
                 home.username = username;

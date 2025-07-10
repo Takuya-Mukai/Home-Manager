@@ -72,6 +72,7 @@
         la = "ea";
         ll = "ee";
         l  = "clear && ls";
+        hms = "home-manager switch --flake '/home/user/hm#user@nixos'";
       };
 
       # zinitの代わりにHome Managerのプラグイン機能を使う
