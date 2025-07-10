@@ -7,6 +7,13 @@ in
     enable = true;
     vimAlias = true;
     colorschemes = colorscheme;
+    dependencies = {
+      curl.enable = true;
+      gcc.enable = true;
+      git.enable = true;
+      lazygit.enable = true;
+      nodejs.enable = true;
+    };
     # keymaps = nixvim-keymaps;
     opts = {
       termguicolors     = true;
