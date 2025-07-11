@@ -1,0 +1,140 @@
+{
+  programs.nixvim.plugins = {
+
+    blink-cmp = {
+      enable = true;
+      settings = {
+        completion = {
+          documentation.autoshow = true;
+          menu.auto_show = true;
+          ghost_text.enable = true;
+          ghost_text.show_with_menu = true;
+        };
+
+        sources = {
+          copilot = {
+            async = true;
+            module = "blink-cmp-copilot";
+            name = "copilot";
+            score_offset = 100;
+          };
+          dictionary = {
+            module ="blink-cmp-dictionary";
+            name = "Dict";
+            score_offset = 100;
+            min_keyword_length = 3;
+            opts = {
+            };
+          };
+          git = {
+            module = "blink-cmp-git";
+            name = "git";
+            score_offset = 100;
+            opts = {
+              commit = { };
+              git_centers = { git_hub = { }; };
+            };
+          };
+
+          default = [
+            "copilot"
+            "Dict"
+            "git"
+          ];
+        };
+      };
+
+      lazyLoad = {
+        settings = {
+          event = [ "InsertEnter" "CmdlineEnter" ];
+        };
+      };
+      luaConfig.post = ''
+          sources.providers.copilot = {
+            transform_items = function(_, items)
+              local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+              local kind_idx = #CompletionItemKind + 1
+              CompletionItemKind[kind_idx] = "Copilot"
+              for _, item in ipairs(items) do
+                item.kind = kind_idx
+              end
+              return items
+            end,
+          },
+          appearance = {
+            kind_icons = {
+              Copilot = "",
+              Text = '󰉿',
+              Method = '󰊕',
+              Function = '󰊕',
+              Constructor = '󰒓',
+
+              Field = '󰜢',
+              Variable = '󰆦',
+              Property = '󰖷',
+
+              Class = '󱡠',
+              Interface = '󱡠',
+              Struct = '󱡠',
+              Module = '󰅩',
+
+              Unit = '󰪚',
+              Value = '󰦨',
+              Enum = '󰦨',
+              EnumMember = '󰦨',
+
+              Keyword = '󰻾',
+              Constant = '󰏿',
+
+              Snippet = '󱄽',
+              Color = '󰏘',
+              File = '󰈔',
+              Reference = '󰬲',
+              Folder = '󰉋',
+              Event = '󱐋',
+              Operator = '󰪚',
+              TypeParameter = '󰬛',
+            },
+          },
+      '';
+    };
+
+    blink-cmp-copilot = {
+      # depend to copilot.lua
+      enable = true;
+      lazyLoad = {
+        settings = {
+          event = [ "InsertEnter" "CmdlineEnter" ];
+        };
+      };
+    };
+
+    blink-cmp-dictionary = {
+      enable = true;
+      lazyLoad = {
+        settings = {
+          event = [ "InsertEnter" "CmdlineEnter" ];
+        };
+      };
+    };
+
+    blink-cmp-git = {
+      enable = true;
+      lazyLoad = {
+        settings = {
+          event = [ "InsertEnter" "CmdlineEnter" ];
+        };
+      };
+    };
+
+    blink-cmp-spell = {
+      enable = true;
+      lazyLoad = {
+        settings = {
+          event = [ "InsertEnter" "CmdlineEnter" ];
+        };
+      };
+    };
+
+  };
+}
