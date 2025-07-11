@@ -290,6 +290,7 @@
         "center, title:^(launcher)$"
         "float, class:^(com.github.hluk.copyq)$"
         "float, initialClass:^(=terminal-btop)$"
+        "opacity 0.9 0.8,class:^(foot)$"
       ];
     };
   };

@@ -1,6 +1,6 @@
 let
   # nixvim-keymaps = import ./nixvim-keymaps.nix;
-  colorscheme = import ./monokai-pro.nix;
+  colorscheme = import ./catppuccin.nix;
 in
 {
   settings = {

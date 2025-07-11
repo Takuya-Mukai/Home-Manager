@@ -11,7 +11,7 @@
           left_bottom = "╰";
           right_arrow = ">";
         };
-        style = "#78dce8";
+        # style = "#78dce8";
     };
       indent.enable = true;
       line_num = {

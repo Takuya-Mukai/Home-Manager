@@ -20,7 +20,7 @@
     enable = true;
     settings = {
       option = {
-        theme = "monokai-pro";
+        theme = "catppuccin";
         globalstatus = true;
         component_separators = {left = ""; right = "";};
         section_separators = {left = ""; right = "";};
@@ -83,17 +83,17 @@
           {
             require("noice").api.status.command.get,
             cond = require("noice").api.status.command.has,
-            color = { fg = "#fc9867" },
+            color = { fg = "#fab387" },
           },
           {
             require("noice").api.status.mode.get,
             cond = require("noice").api.status.mode.has,
-            color = { fg = "#fc9867" },
+            color = { fg = "#fab387" },
           },
           {
             require("noice").api.status.search.get,
             cond = require("noice").api.status.search.has,
-            color = { fg = "#fc9867" },
+            color = { fg = "#fab387" },
           },
         }'';
         lualine_y.__raw = ''{
