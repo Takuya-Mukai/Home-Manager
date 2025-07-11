@@ -6,4 +6,7 @@
   deicons = import ./devicons.nix;
   blink-cmp = import ./blink-cmp.nix;
   copilot = import ./copilot.nix;
+  hlchunk = import ./hlchunk.nix;
+  gitsigns = import ./gitsigns.nix;
+  transparent = import ./transparent.nix;
 }

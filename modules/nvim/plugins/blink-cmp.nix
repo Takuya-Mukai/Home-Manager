@@ -16,16 +16,24 @@
     blink-cmp = {
       enable = true;
       settings = {
+        signature.window.border = "rounded";
         completion = {
+          documentation.window.border = "rounded";
+          menu.border = "rounded";
           documentation.auto_show = true;
           documentation.auto_show_delay_ms = 500;
           menu.auto_show = true;
           ghost_text.enabled = true;
           ghost_text.show_with_menu = true;
         };
+        fuzzy.implementation = "prefer_rust_with_warning";
 
         snippets.preset = "luasnip";
         sources = {
+          default = [ "lsp" "buffer" "snippets" "path" "copilot" "git" ];
+          per_filetype = {
+            markdown = [ "snippets" "lsp" "path" ];
+          };
           providers.copilot = {
             async = true;
             module = "blink-cmp-copilot";
@@ -55,15 +63,8 @@
             score_offset = 100;
             opts = {
               commit = { };
-              git_centers = {
-                git_hub = { };
-              };
+              git_centers.git_hub = { };
             };
-          };
-
-          default = [ "lsp" "buffer" "snippets" "path" "copilot" "git" ];
-          per_filetype = {
-            markdown = [ "snippets" "lsp" "path" ];
           };
         };
 
