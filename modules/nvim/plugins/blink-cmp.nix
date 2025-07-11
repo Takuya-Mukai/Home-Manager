@@ -16,6 +16,10 @@
     blink-cmp = {
       enable = true;
       settings = {
+        cmdline = {
+          keymap = { preset = "inherit"; };
+          completion = { menu = { auto_show = true;}; };
+        };
         signature.window.border = "rounded";
         completion = {
           documentation.window.border = "rounded";

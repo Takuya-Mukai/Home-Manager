@@ -3,12 +3,12 @@
     enable = true;
     settings = {
       transparent_background = false;
+      terminal_colors = true;
       background_clear = [
         "toggleterm"
         "telescope"
         "notify"
         "which-key"
-        "nvim-tree"
         "nvim-cmp"
         "float_win"
       ];

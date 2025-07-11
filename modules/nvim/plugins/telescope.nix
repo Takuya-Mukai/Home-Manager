@@ -1,6 +1,16 @@
 {
   programs.nixvim.plugins.telescope = {
     enable = true;
+    settings = {
+      defaults = {
+        layout_strategy = "vertical";
+        sorting_strategy = "ascending";
+        layout_config = {
+          prompt_position = "top";
+          preview_cutoff = 20;
+        };
+      };
+    };
   };
   programs.nixvim.keymaps = [
     {
@@ -28,7 +38,7 @@
       };
     }
     {
-      action = "function() require('telescope.builtin').help_tags() end";
+      action = "<CMD> lua require('telescope.builtin').help_tags(require('telescope.themes').get_ivy()) end";
       key = "<leader>fh";
       options = {
         desc = "Help tags";
@@ -36,7 +46,7 @@
       };
     }
     {
-      action = "function() require('telescope.builtin').lsp_document_symbols() end";
+      action = "<CMD> lua require('telescope.builtin').lsp_document_symbols(require('telescope.themes').get_cursor()) end";
       key = "<leader>fs";
       options = {
         desc = "LSP document symbols";
@@ -44,7 +54,7 @@
       };
     }
     {
-      action = "function() require('telescope.builtin').lsp_workspace_symbols() end";
+      action = "<CMD> lua require('telescope.builtin').lsp_workspace_symbols(require('telescope.themes').get_cursor()) end";
       key = "<leader>fw";
       options = {
         desc = "LSP workspace symbols";
@@ -52,7 +62,7 @@
       };
     }
     {
-      action = "function() require('telescope.builtin').lsp_references() end";
+      action = "<CMD> lua require('telescope.builtin').lsp_references(require('telescope.themes').get_cursor()) end";
       key = "<leader>fr";
       options = {
         desc = "LSP references";
@@ -60,10 +70,10 @@
       };
     }
     {
-      action = "function() require('telescope.builtin').diagnostics() end";
+      action = "<CMD> lua require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy()) end";
       key = "<leader>fd";
       options = {
-        desc = "Diagnostics";
+        desc = "LSP Diagnostics";
         silent = true;
       };
     }
@@ -88,14 +98,6 @@
       key = "<leader>fi";
       options = {
         desc = "List built-in pickers";
-        silent = true;
-      };
-    }
-    {
-      action = "function() require('telescope').extensions.notify.notify() end";
-      key = "<leader>fn";
-      options = {
-        desc = "Notifications";
         silent = true;
       };
     }

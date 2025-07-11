@@ -5,13 +5,13 @@
       groups = [
         "Normal"
         "NormalNC"
-        "EndOfBuffer"
-        "SignColumn"
-        "LineNr"
-        "CursorLine"
-        "CursorLineNr"
-        "StatusLine"
-        "StatusLineNC"
+        # "EndOfBuffer"
+        # "SignColumn"
+        # "LineNr"
+        # "CursorLine"
+        # "CursorLineNr"
+        # "StatusLine"
+        # "StatusLineNC"
       ];
       extra_groups = [
         # "NormalFloat"
