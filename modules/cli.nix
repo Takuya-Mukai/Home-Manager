@@ -14,11 +14,14 @@
     typst
     gemini-cli
     neofetch
+    delta
   ];
 
   programs = {
     bat.enable = true;
-    lazygit.enable = true;
+    lazygit = {
+      enable = true;
+    };
     zoxide = {
       enable = true;
       enableZshIntegration = true;
@@ -51,6 +54,19 @@
     yazi = {
       enable = true;
       enableZshIntegration = true;
+      plugins = {
+        git = pkgs.yaziPlugins.git;
+        full-border = pkgs.yaziPlugins.full-border;
+      };
+      settings = {
+        plugin = {
+          prepend_fetchers = [
+            { id = "git"; name = "*"; run = "git"; }
+            { id = "git"; name = "*/"; run = "git"; }
+          ];
+        };
+      };
+      initLua = ./config/yazi/init.lua;
     };
 
   # Zshの設定 (両OS共通)
@@ -134,6 +150,8 @@
     TERMINAL = "foot";       # footは別途インストールが必要
   };
 
+  # place lazygit configfile
+  xdg.configFile."lazygit/config.yml".source = ./config/lazygit/config.yml;
   # PATHの追加
   home.sessionPath = [
     "$HOME/.local/bin"
