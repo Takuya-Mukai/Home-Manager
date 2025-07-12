@@ -38,26 +38,12 @@
     #   telescope-nvim
     #   smart-open-nvim
     #   sqlite-lua
-    #   nvim-tree-lua
-    #   yazi-nvim
-    #   mini-nvim
     #   toggleterm-nvim
     #   CopilotChat-nvim
     #   nvim-parinfer
     #   diffview-nvim
     #   hardtime-nvim
-    #
-    #   # ui.lua
-    #   nvim-hlslens
-    #   nvim-scrollbar
-    #   gitsigns-nvim
-    #   hlchunk-nvim
-    #   lualine-nvim
-    #   nvim-navic
-    #   nvim-navbuddy
-    #   fidget-nvim
-    #   nvim-notify
-    #
+
     #   # dap.lua
     #   nvim-dap
     #   nvim-dap-ui
@@ -65,12 +51,7 @@
     #   nvim-dap-python
     #   lazydev-nvim
     #   vim-startuptime
-    #   vim-startuptime
     #   typst-preview-nvim
-    #
-    #   # treesitter
-    #   nvim-treesitter.withAllGrammars
-    #
     # ];
 
     extraPackages = with pkgs; [

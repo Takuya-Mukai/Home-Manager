@@ -67,7 +67,7 @@
       };
     }
     {
-      action = "<cmd>LazyGit";
+      action = "<cmd>LazyGit<CR>";
       key = "<leader>gg";
       options = {
         desc = "Open LazyGit";

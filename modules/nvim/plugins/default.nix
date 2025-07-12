@@ -2,6 +2,12 @@
   lz-n = import ./lz-n.nix;
   which-key = import ./which-key.nix;
   treesitter = import ./treesitter.nix;
+  treesitter-refactor = import ./treesitter-refactor.nix;
+  treesitter-context = import ./treesitter-context.nix;
+  lspkind = import ./lspkind.nix;
+  lsp = import ./lsp.nix;
+  none-ls = import ./none-ls.nix;
+  trouble = import ./trouble.nix;
   lualine = import ./lualine.nix;
   telescope = import ./telescope.nix;
   deicons = import ./devicons.nix;
@@ -14,13 +20,10 @@
   oil = import ./oil.nix;
   noice = import ./noice.nix;
   fidget = import ./fidget.nix;
-  lspkind = import ./lspkind.nix;
-  lsp = import ./lsp.nix;
   rainbow-delimiters = import ./rainbow-delimiters.nix;
   autopairs = import ./autopairs.nix;
   comment = import ./comment.nix;
-  treesitter-context = import ./treesitter-context.nix;
   aerial = import ./aerial.nix;
-  trouble = import ./trouble.nix;
   terminal = import ./terminal.nix;
+  typst-preview = import ./typst-preview.nix;
 }

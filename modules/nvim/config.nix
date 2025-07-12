@@ -8,11 +8,15 @@ in
     vimAlias = true;
     colorschemes = colorscheme;
     dependencies = {
+      bat.enable = true;
+      yazi.enable = true;
       curl.enable = true;
       gcc.enable = true;
       git.enable = true;
       lazygit.enable = true;
       nodejs.enable = true;
+      websocat.enable = true;
+      ffmpegthumbnailer.enable = true;
     };
     # keymaps = nixvim-keymaps;
     opts = {

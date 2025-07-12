@@ -42,10 +42,29 @@
           {
             function()
               local clients = vim.lsp.get_clients()
-              if #clients == 0 then return "No LSP" end
-              return " " .. clients[1].name
+              local names = {}
+
+              for _, client in ipairs(clients) do
+                if client.name ~= "copilot" then
+                  table.insert(names, client.name)
+                end
+              end
+
+              if vim.tbl_isempty(names) then
+                return "No LSP"
+              end
+
+              return " " .. table.concat(names, ", ")
             end,
-            color = { fg = "#7ec699" },
+            color = function()
+              local clients = vim.lsp.get_clients()
+              for _, client in ipairs(clients) do
+                if client.name ~= "copilot" then
+                  return { fg = "#a6e3a1" }  -- LSPがあるとき：青
+                end
+              end
+              return { fg = "#7f849c" }      -- No LSP（またはcopilotだけ）：グレー
+            end,
           },
           {
             'diagnostics',

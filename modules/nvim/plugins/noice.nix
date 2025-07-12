@@ -27,7 +27,7 @@
   programs.nixvim.keymaps = [
     {
       action = "<CMD> Noice telescope <CR>";
-      key = "<leader>fen";
+      key = "<leader>fn";
       options = {
         desc = "Notifications";
         silent = true;

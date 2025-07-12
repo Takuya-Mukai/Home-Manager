@@ -5,10 +5,37 @@
       defaults = {
         layout_strategy = "vertical";
         sorting_strategy = "ascending";
-        layout_config = {
-          prompt_position = "top";
-          preview_cutoff = 20;
+        layout_config.prompt_position = "top";
+      };
+    };
+    extensions = {
+      undo = {
+        enable = true;
+        settings = {
+          side_by_side = true;
+          use_delta = true;
+          layout_strategy = "vertical";
+          sorting_strategy = "ascending";
+          layout_config.prompt_position = "top";
+          layout_config = {
+            preview_height = 0.8;
+          };
         };
+      };
+      fzf-native.enable = true;
+      frecency = {
+        enable = true;
+        settings = {
+          show_scores = false;
+          show_unindexed = true;
+          ignore_patterns = [
+            "*.git/*"
+            "*/tmp/*"
+          ];
+        };
+      };
+      ui-select = {
+        enable = true;
       };
     };
   };
@@ -69,11 +96,26 @@
         silent = true;
       };
     }
+    {
+      action = "<cmd>lua require('telescope').extensions.undo.undo()<cr>";
+      key = "<leader>fu";
+      options = {
+        desc = "Undo history";
+        silent = true;
+      };
+    }
+    {
+      action = "<cmd>Telescope frecency<cr>";
+      key = "<leader>fr";
+      options = {
+        desc = "Frecency";
+        silent = true;
+      };
+    }
   ];
   programs.nixvim.extraConfigLua = ''
     require("which-key").add({
       { "<leader>f", group = "Telescope" },
-      { "<leader>fe", group = "Extention" },
     })
   '';
 }

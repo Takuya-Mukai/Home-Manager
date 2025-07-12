@@ -1,5 +1,12 @@
 {
-  programs.nixvim.plugins.lspconfig.enable = true;
+  programs.nixvim.plugins.lspconfig = {
+    enable = true;
+    lazyLoad.settings.event = [ "LspAttach" ];
+  };
+  programs.nixvim.plugins.lsp-format = {
+    enable = true;
+    lazyLoad.settings.event = [ "LspAttach" ];
+  };
   programs.nixvim.lsp.servers = {
     lua_ls.enable = true;
     rust_analyzer.enable = true;
@@ -9,6 +16,9 @@
     ruff.enable = true;
     clangd.enable = true;
     bashls.enable = true;
+    sqls.enable = true;
+    yamlls.enable = true;
+    tinymist.enable = true;
   };
   programs.nixvim.lsp.keymaps = [
     # ========== 基本操作（直感操作） ==========
