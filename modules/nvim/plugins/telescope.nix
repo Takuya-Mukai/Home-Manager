@@ -38,42 +38,10 @@
       };
     }
     {
-      action = "<CMD> lua require('telescope.builtin').help_tags(require('telescope.themes').get_ivy()) end";
+      action = "<CMD> lua require('telescope.builtin').help_tags(require('telescope.themes').get_ivy()) <CR>";
       key = "<leader>fh";
       options = {
         desc = "Help tags";
-        silent = true;
-      };
-    }
-    {
-      action = "<CMD> lua require('telescope.builtin').lsp_document_symbols(require('telescope.themes').get_cursor()) end";
-      key = "<leader>fs";
-      options = {
-        desc = "LSP document symbols";
-        silent = true;
-      };
-    }
-    {
-      action = "<CMD> lua require('telescope.builtin').lsp_workspace_symbols(require('telescope.themes').get_cursor()) end";
-      key = "<leader>fw";
-      options = {
-        desc = "LSP workspace symbols";
-        silent = true;
-      };
-    }
-    {
-      action = "<CMD> lua require('telescope.builtin').lsp_references(require('telescope.themes').get_cursor()) end";
-      key = "<leader>fr";
-      options = {
-        desc = "LSP references";
-        silent = true;
-      };
-    }
-    {
-      action = "<CMD> lua require('telescope.builtin').diagnostics(require('telescope.themes').get_ivy()) end";
-      key = "<leader>fd";
-      options = {
-        desc = "LSP Diagnostics";
         silent = true;
       };
     }
@@ -102,4 +70,10 @@
       };
     }
   ];
+  programs.nixvim.extraConfigLua = ''
+    require("which-key").add({
+      { "<leader>f", group = "Telescope" },
+      { "<leader>fe", group = "Extention" },
+    })
+  '';
 }

@@ -22,8 +22,6 @@
       option = {
         theme = "catppuccin";
         globalstatus = true;
-        component_separators = {left = ""; right = "";};
-        section_separators = {left = ""; right = "";};
       };
       sections = {
         lualine_a = [ "mode" ];
@@ -42,6 +40,14 @@
         }'';
         lualine_c.__raw = ''{
           {
+            function()
+              local clients = vim.lsp.get_clients()
+              if #clients == 0 then return "No LSP" end
+              return " " .. clients[1].name
+            end,
+            color = { fg = "#7ec699" },
+          },
+          {
             'diagnostics',
             sources = { 'nvim_diagnostic', 'nvim_lsp' },
             sections = { 'error', 'warn', 'info', 'hint' },
@@ -52,17 +58,18 @@
               hint  = ' ',  -- hint/lightbulb (U+EA61)
             }
           },
-          { 'navic' },
+        }'';
+        lualine_x.__raw = ''{
+          "encoding"
         }'';
 
         lualine_y = [
-          "encoding"
           "filetype"
+          "fileformat"
         ];
         lualine_z = [
           "progress"
           "location"
-          "fileformat"
         ];
       };
       tabline = {
@@ -76,25 +83,6 @@
         lualine_c = [];
 
         lualine_x.__raw = ''{
-          {
-            require("noice").api.status.message.get_hl,
-            cond = require("noice").api.status.message.has,
-          },
-          {
-            require("noice").api.status.command.get,
-            cond = require("noice").api.status.command.has,
-            color = { fg = "#fab387" },
-          },
-          {
-            require("noice").api.status.mode.get,
-            cond = require("noice").api.status.mode.has,
-            color = { fg = "#fab387" },
-          },
-          {
-            require("noice").api.status.search.get,
-            cond = require("noice").api.status.search.has,
-            color = { fg = "#fab387" },
-          },
         }'';
         lualine_y.__raw = ''{
           {

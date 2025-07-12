@@ -3,6 +3,7 @@
     enable = true;
     settings = {
       integrations = {
+        aerial = true;
         blink_cmp = {
           style = "rounded";
         };
@@ -13,11 +14,9 @@
           indentscope_color = "";
         };
         noice = true;
-        navic = {
-          enabled = false;
-          custom_bg = "NONE";
-        };
+        notify = true;
         treesitter_context = true;
+        vimwiki = true;
         lsp_trouble = true;
         which_key = true;
       };
