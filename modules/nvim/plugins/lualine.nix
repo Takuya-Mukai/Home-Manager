@@ -10,10 +10,10 @@
         }
       end
     end
-
     -- グローバルに公開（lualineが参照できるように）
     _G.diff_source = diff_source
   '';
+
 
   programs.nixvim.plugins.lualine = {
     lazyLoad.settings.event = [ "VimEnter" ];
@@ -42,11 +42,13 @@
           {
             function()
               local clients = vim.lsp.get_clients()
+              local seen = {}
               local names = {}
 
               for _, client in ipairs(clients) do
-                if client.name ~= "copilot" then
+                if client.name ~= "copilot" and client.name ~= "null-ls" and not seen[client.name] then
                   table.insert(names, client.name)
+                  seen[client.name] = true
                 end
               end
 
@@ -59,11 +61,11 @@
             color = function()
               local clients = vim.lsp.get_clients()
               for _, client in ipairs(clients) do
-                if client.name ~= "copilot" then
-                  return { fg = "#a6e3a1" }  -- LSPがあるとき：青
+                if client.name ~= "copilot" and client.name ~= "null-ls" then
+                  return { fg = "#a6e3a1" }  -- LSPがあるとき：緑
                 end
               end
-              return { fg = "#7f849c" }      -- No LSP（またはcopilotだけ）：グレー
+              return { fg = "#7f849c" }      -- LSPなし（またはcopilot/null-lsだけ）：グレー
             end,
           },
           {
@@ -77,6 +79,23 @@
               hint  = ' ',  -- hint/lightbulb (U+EA61)
             }
           },
+          {
+            function()
+              local trouble = require("trouble")
+              local symbols = trouble.statusline({
+                mode = "lsp_document_symbols",
+                groups = {},
+                title = false,
+                filter = { range = true },
+                format = "{kind_icon}{symbol.name:Normal}",
+                hl_group = "lualine_c_normal",
+              })
+              if symbols.has() then
+                return symbols.get()
+              end
+              return ""
+            end,
+          }
         }'';
         lualine_x.__raw = ''{
           "encoding"
@@ -98,10 +117,15 @@
             symbols = { modified = " ", readonly = " ", unnamed = " ", },
           },
         }'';
-        lualine_b = [];
-        lualine_c = [];
+        lualine_b = [ ];
+        lualine_c = [ ];
 
         lualine_x.__raw = ''{
+          {
+            require("noice").api.status.command.get,
+            cond = require("noice").api.status.command.has,
+            color = { fg = "#eba0ac" },
+          },
         }'';
         lualine_y.__raw = ''{
           {
@@ -116,7 +140,7 @@
           {
             'b:gitsigns_head',
             icon = ' ', 
-            color = { fg = "#fc9867" },
+            color = { fg = "#fab387" },
           }
         }'';
         lualine_z = [ "tabs" ];

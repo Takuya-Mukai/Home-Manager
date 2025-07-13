@@ -4,11 +4,10 @@
   treesitter = import ./treesitter.nix;
   treesitter-refactor = import ./treesitter-refactor.nix;
   treesitter-context = import ./treesitter-context.nix;
-  lspkind = import ./lspkind.nix;
   lsp = import ./lsp.nix;
+  lspkind = import ./lspkind.nix;
   none-ls = import ./none-ls.nix;
   trouble = import ./trouble.nix;
-  lualine = import ./lualine.nix;
   telescope = import ./telescope.nix;
   deicons = import ./devicons.nix;
   blink-cmp = import ./blink-cmp.nix;
@@ -26,4 +25,6 @@
   aerial = import ./aerial.nix;
   terminal = import ./terminal.nix;
   typst-preview = import ./typst-preview.nix;
+  surround = import ./surround.nix;
+  lualine = import ./lualine.nix;
 }

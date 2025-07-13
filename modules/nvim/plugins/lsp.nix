@@ -1,11 +1,9 @@
 {
   programs.nixvim.plugins.lspconfig = {
     enable = true;
-    lazyLoad.settings.event = [ "LspAttach" ];
   };
   programs.nixvim.plugins.lsp-format = {
     enable = true;
-    lazyLoad.settings.event = [ "LspAttach" ];
   };
   programs.nixvim.lsp.servers = {
     lua_ls.enable = true;
