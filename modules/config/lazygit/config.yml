@@ -9,6 +9,8 @@ git:
   branchLogCmd: >
     git log --graph --color=always --date=format:'%Y-%m-%d %H:%M' 
     --pretty=format:'%C(blue)%h%C(reset) %C(green)%ad%C(reset) %C(magenta)%an%C(reset)%n%C(white)%s%C(reset)' {{branchName}}
+disableMerging: false
+disableRebasing: false
 
 theme:
   activeBorderColor:
