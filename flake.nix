@@ -40,6 +40,7 @@
     # machine名とnixファイルパスのペアだけを定義
     userMachines = {
       nixos = ./home/nixos.nix;
+      thinkpad = ./home/thinkpad.nix;
     };
 
   in {
