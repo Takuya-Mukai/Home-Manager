@@ -1,8 +1,8 @@
-{ inputs, pkgs, ...}:
+{ inputs, pkgs, ... }:
 {
   programs.hyprlock.enable = true;
   services = {
-    hypridle.enable =true;
+    hypridle.enable = true;
     hyprpaper.enable = true;
     hyprpolkitagent.enable = true;
   };
@@ -11,7 +11,7 @@
     package = null;
     portalPackage = null;
     plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
+      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
     ];
@@ -39,7 +39,7 @@
         "${../../config/hypr/scripts/optimize4ExitNode.sh}"
         "nm-applet --sm-disable &"
         "nextcloud --background"
-	"${../../config/hypr/scripts/wayvnc_server.sh}"
+        "${../../config/hypr/scripts/wayvnc_server.sh}"
         "${../../config/hypr/scripts/start.sh}"
         # NOTE: プラグインは`programs.hyprland.plugins`で指定するため、以下の行は不要です。
         # "hyprctl plugin load \"$HYPR_PLUGIN_DIR/lib/libhyprfocus.so\""
@@ -153,7 +153,7 @@
         follow_mouse = 1;
         sensitivity = 0;
         touchpad = {
-          natural_scroll = false;
+          natural_scroll = true;
         };
       };
 
