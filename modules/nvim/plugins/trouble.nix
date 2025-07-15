@@ -1,6 +1,7 @@
 {
   programs.nixvim.plugins.trouble = {
     enable = true;
+    lazyLoad.settings.keys = [ "<leader>x" ];
   };
   programs.nixvim.keymaps = [
     {

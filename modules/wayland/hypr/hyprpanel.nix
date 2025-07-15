@@ -1,4 +1,9 @@
-{ pkgs, config, lib, inputs, ... }:
+{ pkgs
+, config
+, lib
+, inputs
+, ...
+}:
 {
   imports = [
     inputs.ags.homeManagerModules.default
@@ -21,8 +26,8 @@
         "bar.layouts" =
           let
             layout =
-              {
-                showBattery ? true,
+              { showBattery ? true
+              ,
               }:
               {
                 "left" = [

@@ -1,22 +1,20 @@
 {
-  programs.nixvim.extraConfigLua = ''
-    local function diff_source()
-      local gitsigns = vim.b.gitsigns_status_dict
-      if gitsigns then
-        return {
-          added = gitsigns.added,
-          modified = gitsigns.changed,
-          removed = gitsigns.removed
-        }
-      end
-    end
-    -- グローバルに公開（lualineが参照できるように）
-    _G.diff_source = diff_source
-  '';
-
-
   programs.nixvim.plugins.lualine = {
-    lazyLoad.settings.event = [ "VimEnter" ];
+    lazyLoad.settings.event = [ "InsertEnter" "CursorHold" "FocusLost" "BufRead" "BufNewFile" ];
+    luaConfig.pre = ''
+      local function diff_source()
+        local gitsigns = vim.b.gitsigns_status_dict
+        if gitsigns then
+          return {
+            added = gitsigns.added,
+            modified = gitsigns.changed,
+            removed = gitsigns.removed
+          }
+        end
+      end
+      -- グローバルに公開（lualineが参照できるように）
+      _G.diff_source = diff_source
+    '';
     enable = true;
     settings = {
       option = {
@@ -80,21 +78,7 @@
             }
           },
           {
-            function()
-              local trouble = require("trouble")
-              local symbols = trouble.statusline({
-                mode = "lsp_document_symbols",
-                groups = {},
-                title = false,
-                filter = { range = true },
-                format = "{kind_icon}{symbol.name:Normal}",
-                hl_group = "lualine_c_normal",
-              })
-              if symbols.has() then
-                return symbols.get()
-              end
-              return ""
-            end,
+            "navic"
           }
         }'';
         lualine_x.__raw = ''{
@@ -122,8 +106,15 @@
 
         lualine_x.__raw = ''{
           {
-            require("noice").api.status.command.get,
-            cond = require("noice").api.status.command.has,
+            function()
+              local ok, noice = pcall(require, "noice")
+              return (ok and noice.api.status.command.get())
+                or ""
+            end,
+            cond = function()
+              local ok, noice = pcall(require, "noice")
+              return ok and noice.api.status.command.has()
+            end,
             color = { fg = "#eba0ac" },
           },
         }'';

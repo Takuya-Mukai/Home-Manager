@@ -1,6 +1,7 @@
 {
   programs.nixvim.plugins.telescope = {
     enable = true;
+    lazyLoad.settings.keys = [ "<leader>f" ];
     settings = {
       defaults = {
         layout_strategy = "vertical";

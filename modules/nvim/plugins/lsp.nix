@@ -2,9 +2,6 @@
   programs.nixvim.plugins.lspconfig = {
     enable = true;
   };
-  programs.nixvim.plugins.lsp-format = {
-    enable = true;
-  };
   programs.nixvim.lsp.servers = {
     lua_ls.enable = true;
     rust_analyzer.enable = true;

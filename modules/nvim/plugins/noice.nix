@@ -1,6 +1,7 @@
 {
   programs.nixvim.plugins.noice = {
     enable = true;
+    lazyLoad.settings.event = [ "UIEnter"];
     settings = {
       lsp = {
         override = {
@@ -20,9 +21,7 @@
   };
   programs.nixvim.plugins.notify = {
     enable = true;
-    settings = {
-      background_colour = "#16161E";
-    };
+    lazyLoad.settings.event = [ "UIEnter" ];
   };
   programs.nixvim.keymaps = [
     {

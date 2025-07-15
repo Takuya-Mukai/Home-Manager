@@ -8,6 +8,7 @@
   lspkind = import ./lspkind.nix;
   none-ls = import ./none-ls.nix;
   trouble = import ./trouble.nix;
+  nav = import ./nav.nix;
   telescope = import ./telescope.nix;
   deicons = import ./devicons.nix;
   blink-cmp = import ./blink-cmp.nix;
