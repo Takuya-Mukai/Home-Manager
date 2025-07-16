@@ -8,7 +8,6 @@
     ripgrep
     curl
     wget
-    coreutils
     gnused
     gnugrep
     findutils
