@@ -33,7 +33,7 @@
     btop = {
       enable = true;
       settings = {
-        theme = "kanagawa_wave";
+        theme = "catppuccin_mocha";
         vim_keys = true;
         graph_symbol = "braille";
         graph_symbol_cpu = "braille";
@@ -67,6 +67,9 @@
         };
       };
       initLua = ./config/yazi/init.lua;
+    };
+    zellij = {
+      enable = true;
     };
 
   # Zshの設定 (両OS共通)
@@ -144,17 +147,23 @@
       '';
     };
   };
-  home.sessionVariables = {
-    BROWSER = "zen"; # zen-browserは別途インストールが必要
-    EDITOR = "nvim";
-    TERMINAL = "foot";       # footは別途インストールが必要
+  home = {
+    sessionVariables = {
+      BROWSER = "zen"; # zen-browserは別途インストールが必要
+      EDITOR = "nvim";
+      TERMINAL = "foot";       # footは別途インストールが必要
+    };
+    sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/.cargo/bin"
+    ];
   };
 
   # place lazygit configfile
-  xdg.configFile."lazygit/config.yml".source = ./config/lazygit/config.yml;
+  xdg.configFile = {
+    "lazygit/config.yml".source = ./config/lazygit/config.yml;
+    "btop/themes/catppuccin_mocha.theme".source = ./config/btop/themes/catppuccin_mocha.theme;
+    "zellij/config.kdl".source = ./config/zellij/config.kdl;
+  };
   # PATHの追加
-  home.sessionPath = [
-    "$HOME/.local/bin"
-    "$HOME/.cargo/bin"
-  ];
 }
