@@ -52,7 +52,7 @@
         xiaomipad = {
           path = ./home/xiaomipad.nix;
           system = "aarch64-linux";
-          username = "user";
+          username = "nix-on-droid";
           homeDirectory = "/data/data/com.termux.nix/files/home";
         };
       };
