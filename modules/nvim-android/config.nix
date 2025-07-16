@@ -5,7 +5,6 @@ in
 {
   settings = {
     enable = true;
-    vimAlias = true;
     colorschemes = colorscheme;
     dependencies = {
       bat.enable = true;
