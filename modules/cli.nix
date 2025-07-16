@@ -11,7 +11,6 @@
     # tesseract.data.jpn_vert
     # tesseract.data.ell
     # tesseract.data.tha
-    typst
     gemini-cli
     neofetch
     delta
@@ -61,8 +60,16 @@
       settings = {
         plugin = {
           prepend_fetchers = [
-            { id = "git"; name = "*"; run = "git"; }
-            { id = "git"; name = "*/"; run = "git"; }
+            {
+              id = "git";
+              name = "*";
+              run = "git";
+            }
+            {
+              id = "git";
+              name = "*/";
+              run = "git";
+            }
           ];
         };
       };
@@ -72,7 +79,7 @@
       enable = true;
     };
 
-  # Zshの設定 (両OS共通)
+    # Zshの設定 (両OS共通)
     zsh = {
       enable = true;
       history = {
@@ -90,7 +97,7 @@
         ls = "ei";
         la = "ea";
         ll = "ee";
-        l  = "clear && ls";
+        l = "clear && ls";
         hms = "home-manager switch --flake '/home/user/hm#user@nixos'";
       };
 
@@ -109,10 +116,22 @@
           file = "plugins/git/git.plugin.zsh";
         }
         # zsh-users のプラグイン
-        { name = "zsh-completions"; src = pkgs.zsh-completions; }
-        { name = "zsh-history-substring-search"; src = pkgs.zsh-history-substring-search; }
-        { name = "zsh-syntax-highlighting"; src = pkgs.zsh-syntax-highlighting; }
-        { name = "zsh-autosuggestions"; src = pkgs.zsh-autosuggestions; }
+        {
+          name = "zsh-completions";
+          src = pkgs.zsh-completions;
+        }
+        {
+          name = "zsh-history-substring-search";
+          src = pkgs.zsh-history-substring-search;
+        }
+        {
+          name = "zsh-syntax-highlighting";
+          src = pkgs.zsh-syntax-highlighting;
+        }
+        {
+          name = "zsh-autosuggestions";
+          src = pkgs.zsh-autosuggestions;
+        }
       ];
 
       # その他のカスタム設定
@@ -151,7 +170,7 @@
     sessionVariables = {
       BROWSER = "zen"; # zen-browserは別途インストールが必要
       EDITOR = "nvim";
-      TERMINAL = "foot";       # footは別途インストールが必要
+      TERMINAL = "foot"; # footは別途インストールが必要
     };
     sessionPath = [
       "$HOME/.local/bin"

@@ -32,41 +32,59 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-  let
-    system = "x86_64-linux";
-    username = "user";
-
-    # machine名とnixファイルパスのペアだけを定義
-    userMachines = {
-      nixos = ./home/nixos.nix;
-      thinkpad = ./home/thinkpad.nix;
+  outputs =
+    { nixpkgs, home-manager, ... }@inputs:
+    let
+      # 各マシンごとに設定（system, path, username, homeDirectory）を指定
+      userMachines = {
+        nixos = {
+          path = ./home/nixos.nix;
+          system = "x86_64-linux";
+          username = "user";
+          homeDirectory = "/home/user";
+        };
+        thinkpad = {
+          path = ./home/thinkpad.nix;
+          system = "x86_64-linux";
+          username = "user";
+          homeDirectory = "/home/user";
+        };
+        xiaomipad = {
+          path = ./home/xiaomipad.nix;
+          system = "aarch64-linux";
+          username = "user";
+          homeDirectory = "/data/data/com.termux.nix/files/home";
+        };
+      };
+    in
+    {
+      homeConfigurations = nixpkgs.lib.mapAttrs'
+        (
+          machine: cfg:
+            let
+              fullName = "${cfg.username}@${machine}";
+              system = cfg.system;
+            in
+            {
+              name = fullName;
+              value = home-manager.lib.homeManagerConfiguration {
+                pkgs = import nixpkgs {
+                  inherit system;
+                  config.allowUnfree = true;
+                };
+                extraSpecialArgs = { inherit inputs; };
+                modules = [
+                  inputs.nixvim.homeManagerModules.nixvim
+                  cfg.path
+                  {
+                    home.username = cfg.username;
+                    home.homeDirectory = cfg.homeDirectory;
+                    home.stateVersion = "25.05";
+                  }
+                ];
+              };
+            }
+        )
+        userMachines;
     };
-
-  in {
-    homeConfigurations = nixpkgs.lib.mapAttrs'
-      (machine: path:
-        let
-          fullName = "${username}@${machine}";
-        in {
-          name = fullName;
-          value = home-manager.lib.homeManagerConfiguration {
-            pkgs = import nixpkgs {
-              system = system;
-              config.allowUnfree = true;
-            };
-            extraSpecialArgs = { inherit inputs; };
-            modules = [
-	      inputs.nixvim.homeManagerModules.nixvim
-              path
-              {
-                home.username = username;
-                home.homeDirectory = "/home/${username}";
-                home.stateVersion = "25.05";
-              }
-            ];
-          };
-        })
-      userMachines;
-  };
 }
