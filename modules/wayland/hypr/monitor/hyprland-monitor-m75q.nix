@@ -4,11 +4,11 @@
     workspace = [
       "1, monitor:DP-2"
       "2, monitor:DP-2"
-      "3, monitor:DP-1"
+      "3, monitor:DP-2"
       "4, monitor:DP-1"
       "5, monitor:DP-1"
       "6, monitor:DP-1"
-      "7, monitor:HDMI-A-1"
+      "7, monitor:DP-1"
       "8, monitor:HDMI-A-1"
       "9, monitor:HDMI-A-1"
       "10,monitor:HDMI-A-1"
