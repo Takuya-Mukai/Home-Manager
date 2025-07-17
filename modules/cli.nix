@@ -79,6 +79,10 @@
       enable = true;
     };
 
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+    };
     # Zshの設定 (両OS共通)
     zsh = {
       enable = true;
@@ -103,18 +107,6 @@
 
       # zinitの代わりにHome Managerのプラグイン機能を使う
       plugins = [
-        # Pureテーマ
-        {
-          name = "pure";
-          src = pkgs.pure-prompt;
-          file = "share/zsh/site-functions/prompt_pure_setup";
-        }
-        # Oh My Zsh の git プラグイン
-        {
-          name = "oh-my-zsh-git";
-          src = pkgs.oh-my-zsh;
-          file = "plugins/git/git.plugin.zsh";
-        }
         # zsh-users のプラグイン
         {
           name = "zsh-completions";

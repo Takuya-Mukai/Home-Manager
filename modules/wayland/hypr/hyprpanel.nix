@@ -1,6 +1,4 @@
 { pkgs
-, config
-, lib
 , inputs
 , ...
 }:
@@ -25,43 +23,31 @@
       layout = {
         "bar.layouts" =
           let
-            layout =
-              { showBattery ? true
-              ,
-              }:
-              {
-                "left" = [
-                  "dashboard"
-                  "workspaces"
-                  "windowtitle"
-                  "updates"
-                  "storage"
-                ] ++ (if showBattery then [ "battery" ] else [ ]);
-                "middle" = [
-                  "media"
-                ];
-                "right" = [
-                  "cpu"
-                  "ram"
-                  "volume"
-                  "network"
-                  "bluetooth"
-                  "systray"
-                  "clock"
-                  "notifications"
-                ];
-              };
-            none = {
-              "left" = [ ];
-              "middle" = [ ];
-              "right" = [ ];
+            layout ={
+              "left" = [
+                "dashboard"
+                "workspaces"
+                "windowtitle"
+                "updates"
+                "storage"
+              ];
+              "middle" = [
+                "media"
+              ];
+              "right" = [
+                "cpu"
+                "ram"
+                "volume"
+                "network"
+                "bluetooth"
+                "systray"
+                "clock"
+                "notifications"
+              ];
             };
           in
           {
-            "0" = layout { };
-            "1" = none;
-            "2" = none;
-            "3" = none;
+            "*" = layout;
           };
       };
       bar.customModules.updates.pollingInterval = 1440000;
@@ -84,7 +70,7 @@
       # menus.dashboard.shortcuts.right.shortcut1.command = "${pkgs.gcolor3}/bin/gcolor3";
       menus.media.displayTime = true;
       menus.power.lowBatteryNotification = true;
-      bar.customModules.updates.updateCommand = "jq '[.[].cvssv3_basescore | to_entries | add | select(.value > 5)] | length' <<< $(vulnix -S --json)";
+      bar.customModules.updates.updateCommand = "vulnix -S --json | jq '[.[] | select((.cvssv3_basescore | to_entries | map(.value) | max) > 5)] | length'";
       bar.customModules.updates.icon.updated = "󰋼";
       bar.customModules.updates.icon.pending = "󰋼";
       bar.volume.rightClick = "pactl set-sink-mute @DEFAULT_SINK@ toggle";
