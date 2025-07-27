@@ -49,6 +49,12 @@
           username = "user";
           homeDirectory = "/home/user";
         };
+        mini = {
+          path = ./home/mini.nix;
+          system = "x86_64-linux";
+          username = "user";
+          homeDirectory = "/home/user";
+        };
         xiaomipad = {
           path = ./home/xiaomipad.nix;
           system = "aarch64-linux";
