@@ -35,7 +35,7 @@
     (pkgs.makeDesktopItem {
       name = "Messenger";
       desktopName = "Messenger";
-      exec = "${pkgs.chromium}/bin/chromium --app=https://messenger.com";
+      exec = "${pkgs.chromium}/bin/chromium --enable-features=UseOzonePlatform --ozone-platform-hint=wayland --wayland-text-input-version=3 --enable-wayland-ime --app=https://messenger.com";
       icon = "fbmessenger";
       categories = [ "Network" "InstantMessaging" ];
     })
